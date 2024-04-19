@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 
-
 const TriviaApp = () => {
     const [questions, setQuestions] = useState(null);
 
@@ -15,10 +14,26 @@ const TriviaApp = () => {
 
     return (
         <>
-            <h1>Trivia App</h1>
-            {questions && questions.map((question, index) => (
-                <p key={index}>{question.question.text}</p>
-            ))}
+            <h1 className={"header"}>Trivia App</h1>
+            <form>
+                {questions && questions.map((question, index) => (
+                    <div key={question.id}>
+                        <fieldset>
+                            <legend>{`${index + 1}. ${question.question.text}`}</legend>
+                            {[question.correctAnswer, ...question.incorrectAnswers].sort().map((answer, answerIndex) => (
+                                <label key={answerIndex}>
+                                    <input
+                                        type="radio"
+                                        name={`question_${index}`}
+                                        value={answer}
+                                    />
+                                    {answer}
+                                </label>
+                            ))}
+                        </fieldset>
+                    </div>
+                ))}
+            </form>
         </>
     );
 };
