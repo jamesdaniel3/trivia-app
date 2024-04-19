@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import '../styles/TriviaApp.css'; // Assuming you have a CSS file for styles
 
 const TriviaApp = () => {
     const [questions, setQuestions] = useState(null);
@@ -14,21 +15,23 @@ const TriviaApp = () => {
 
     return (
         <>
-            <h1 className={"header"}>Trivia App</h1>
-            <form>
+            <h1 className="header">Trivia App</h1>
+            <form className="trivia-form">
                 {questions && questions.map((question, index) => (
-                    <div key={question.id}>
+                    <div key={question.id} className="question-container">
                         <fieldset>
                             <legend>{`${index + 1}. ${question.question.text}`}</legend>
                             {[question.correctAnswer, ...question.incorrectAnswers].sort().map((answer, answerIndex) => (
-                                <label key={answerIndex}>
-                                    <input
-                                        type="radio"
-                                        name={`question_${index}`}
-                                        value={answer}
-                                    />
-                                    {answer}
-                                </label>
+                                <div key={answerIndex} className="answer-option">
+                                    <label>
+                                        <input
+                                            type="radio"
+                                            name={`question_${index}`}
+                                            value={answer}
+                                        />
+                                        {answer}
+                                    </label>
+                                </div>
                             ))}
                         </fieldset>
                     </div>

@@ -1,0 +1,17 @@
+.header {
+    text-align: left;
+    margin-left: 20px;
+}
+
+.trivia-form {
+    margin-left: 20px;
+}
+
+.question-container {
+    margin-bottom: 20px;
+}
+
+.answer-option {
+    text-align: left;
+    margin-top: 5px;
+}
