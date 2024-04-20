@@ -4,10 +4,12 @@
 }
 
 .trivia-form {
+    text-align: left;
     margin-left: 20px;
 }
 
 .question-container {
+    text-align: left;
     margin-bottom: 20px;
 }
 
