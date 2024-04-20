@@ -3,6 +3,7 @@ import '../styles/TriviaApp.css'; // Assuming you have a CSS file for styles
 
 const TriviaApp = () => {
     const [questions, setQuestions] = useState(null);
+    const [selectedAnswers, setSelectedAnswers] = useState({});
 
     useEffect(() => {
         const fetchQuestions = async () => {
@@ -12,6 +13,13 @@ const TriviaApp = () => {
         };
         fetchQuestions();
     }, []);
+
+    const handleAnswerSelection = (index, answer) => {
+        setSelectedAnswers({
+            ...selectedAnswers,
+            [index]: answer
+        });
+    };
 
     return (
         <>
@@ -23,11 +31,14 @@ const TriviaApp = () => {
                             <legend>{`${index + 1}. ${question.question.text}`}</legend>
                             {[question.correctAnswer, ...question.incorrectAnswers].sort().map((answer, answerIndex) => (
                                 <div key={answerIndex} className="answer-option">
-                                    <label>
+                                    <label style={{
+                                        color: selectedAnswers[index] === answer ? (answer === question.correctAnswer ? 'green' : 'red') : 'inherit'
+                                    }}>
                                         <input
                                             type="radio"
                                             name={`question_${index}`}
                                             value={answer}
+                                            onChange={() => handleAnswerSelection(index, answer)}
                                         />
                                         {answer}
                                     </label>
