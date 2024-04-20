@@ -17,3 +17,11 @@
     text-align: left;
     margin-top: 5px;
 }
+
+.progress {
+    position: fixed; /* Fix the position */
+    top: 5%; /* Align to the top of the viewport */
+    left: 50%; /* Center horizontally */
+    width: 45%; /* Full width */
+    z-index: 1000; /* Ensure it's above other content */
+}

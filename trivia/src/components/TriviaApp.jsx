@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
+import LinearProgress from '@mui/material/LinearProgress';
 import '../styles/TriviaApp.css'; // Assuming you have a CSS file for styles
 
 const TriviaApp = () => {
-    const [questions, setQuestions] = useState(null);
+    const [questions, setQuestions] = useState([]);
     const [selectedAnswers, setSelectedAnswers] = useState({});
 
     useEffect(() => {
@@ -21,8 +22,13 @@ const TriviaApp = () => {
         });
     };
 
+    const progress = Object.keys(selectedAnswers).length / questions.length * 100;
+
     return (
         <>
+            <div className={"progress"}>
+                <LinearProgress variant="determinate" value={progress} />
+            </div>
             <h1 className="header">Trivia App</h1>
             <form className="trivia-form">
                 {questions && questions.map((question, index) => (
